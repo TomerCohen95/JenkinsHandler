@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="jenkins_wrapper-handler",
-    version="1.0.0",
+    version="1.0.1",
     author="Tomer Cohen",
     author_email="tomerthetester@gmael.com",
     description="A Wrapper for Jenkins API",
