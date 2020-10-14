@@ -1,7 +1,7 @@
 import typing
 from dataclasses import dataclass
 
-from jenkins_handler.jenkins_logs_parser import JobLogParser
+from jenkins_wrapper.jenkins_logs_parser import JobLogParser
 
 
 @dataclass

@@ -3,9 +3,9 @@ import jenkins
 import os
 import requests
 from common.logging import log_wrapper
-from jenkins_handler.jenkins_config import JenkinsConfig
-from jenkins_handler.jenkins_job import JenkinsJobList, JenkinsJob
-from jenkins_handler.jenkins_logs_parser import JobLogParserFactory
+from jenkins_wrapper.jenkins_config import JenkinsConfig
+from jenkins_wrapper.jenkins_job import JenkinsJobList, JenkinsJob
+from jenkins_wrapper.jenkins_logs_parser import JobLogParserFactory
 
 os.environ["PYTHONHTTPSVERIFY"] = "0"
 
@@ -59,12 +59,12 @@ class JenkinsHandler:
 
 
 def get_jenkins_handler() -> 'JenkinsHandler':
-    logger.debug('getting jenkins handler object')
+    logger.debug('getting jenkins_wrapper handler object')
     try:
         server = jenkins.Jenkins(url=JenkinsConfig.JENKINS_URL, username=JenkinsConfig.JENKINS_USERNAME,
                                  password=JenkinsConfig.JENKINS_PASSWORD)
     except ConnectionError:
-        logger.exception('Could not connect to jenkins server')
+        logger.exception('Could not connect to jenkins_wrapper server')
         return None
 
     return JenkinsHandler(server=server)
