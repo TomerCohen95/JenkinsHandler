@@ -16,9 +16,9 @@ class JenkinsHandler:
     def __init__(self, server: jenkins.Jenkins):
         self.server = server
 
-    def get_all_builds_results(self) -> JenkinsJobList:
+    def get_all_builds_results(self, jobs_folder_path) -> JenkinsJobList:
         try:
-            all_jenkins_jobs = self._get_job_objects(folder_path=JenkinsConfig.JOBS_FOLDER)
+            all_jenkins_jobs = self._get_job_objects(folder_path=jobs_folder_path)
             jobs_results = self._convert_jenkins_objects_to_results(all_jenkins_jobs)
             return JenkinsJobList(jobs=jobs_results)
 
@@ -58,11 +58,11 @@ class JenkinsHandler:
         return jobs_paths
 
 
-def get_jenkins_handler() -> 'JenkinsHandler':
+def get_jenkins_handler(url, username, password) -> 'JenkinsHandler':
     logger.debug('getting jenkins_wrapper handler object')
     try:
-        server = jenkins.Jenkins(url=JenkinsConfig.JENKINS_URL, username=JenkinsConfig.JENKINS_USERNAME,
-                                 password=JenkinsConfig.JENKINS_PASSWORD)
+        server = jenkins.Jenkins(url=url, username=username,
+                                 password=password)
     except ConnectionError:
         logger.exception('Could not connect to jenkins_wrapper server')
         return None
