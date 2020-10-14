@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="jenkins_wrapper-handler",
+    name="jenkins-handler",
     version="1.0.2",
     author="Tomer Cohen",
     author_email="tomerthetester@gmael.com",
